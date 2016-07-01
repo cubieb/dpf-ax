@@ -8,15 +8,19 @@ This is a free software package to:
 * Make them display system information using lcd4linux, VDR (Video Disk Recorder)
   and other linux based software.
 
-This is a chaotically growing README. You'll have to gather some information
-from here and there and probably use google, too. Sorry!
+Following files are avaiable for download:
 
+dpf-ax_*.tgz:
+  - Linux tools and drivers source files.
 
-----------------------------------------------------------------------------
-AX206 DPF firmware (also referred to as BSOH - blue screen of hack)
-----------------------------------------------------------------------------
+dpf-ax_firmware_*.zip:
+  - Precompiled custom firmware for all supported frames.
 
-Read all the firmware details in src/README or src/README.developer
+dpf-ax_firmeware-src_*.tgz:
+  - Firmware source files for all supported frames.
+
+dpf-ax_windows_*.zip:
+  - Tools for Windows: type detection & backup of original firmware.
 
 ----------------------------------------------------------------------------
 Firmware detection & flashing
@@ -65,103 +69,3 @@ http://forum.doozan.com/read.php?9,10026
 
 If restore.py is not working (or you prefer windows :-o), see tools/README.windows
 for instructions howt to do the detection & flashing.
-
-----------------------------------------------------------------------------
-Building options
-----------------------------------------------------------------------------
-
-Verify that you have a decent development system (GCC, development libraries,
-subversion -- if you want to build lcd4linux) installed.
-  
-You can build different targets, depending on your needs.
-
-* The dpf access library, python modules and helpers:
-  > make
-
-* The curren SVN version of lcd4linux with dpf-ax support:
-  You need an internet connection. because lcd4linux is pulled from their server.
-  You might also have to install the package "pkg-config", or else the
-  configure procedure will likely fail.
-  > make lcd4linux
-
-* The firmware for all known frames:
-  Note: read src/README for more information about prerequisites for firmware building.
-  > make firmware
-
-* The full monty:
-  > make all
-
-----------------------------------------------------------------------------
-Windows support
-----------------------------------------------------------------------------
-
-There is no Windows driver for hacked frames. Period.
-
-But there is partial support for firmware detection and backup.
-See tools/README.windows.
-
-There is experimental Cygwin support. You need python and libusb-devel Cygwin
-packages. Compile and install sg3_utils yourself because no Cygwin pacage is
-available. To access DPF when it appears as a drive, run as Administrator
-and specify the drive letter. To access DPF in bootloader mode, install
-libusb-win32 filter driver for that USB device. There is no need to run
-as Administrator for bootloader mode.
-
-----------------------------------------------------------------------------
-LCD4linux display notes
-----------------------------------------------------------------------------
-Usage:
-
-* Configure lcd4linux: normally, the default settings will do. If you wish
-  to use other drivers or cross compile, check build-dpf-lcd4linux.sh
-  for configure options.
-
-* Try it:
-  > cd lcd4linux; ./lcd4linux -f ../dpf_128x128.conf -F
-
-----------------------------------------------------------------------------
-Notes about the lcd4linux dpf driver:
-
-* Supported properties:
-  - Property 'Backlight': Set the dpfs backlight/brightness.
-    Values: 0-7 (0 = off, 7 = max).
-  - Property 'Orientation': Set the dpfs *LOGICAL* orientation.
-    Note: *PHYSICAL* orientation does not matter. Rotation is done in the driver.
-    Value (height != width): 0 = landscape, 1 = portrait, 2 = reverse landscape, 3 = reverse portrait.
-    Value (height == width): 0 = standard, 1 = rotate 90° CW, 2 = rotate 180°, 3 = rotate 90° CCW
-
----------------------------------------------------------------------------
-Troubleshooting
-
-If the lcd4linux build process fails, you may want to start over without
-running the entire build procedure.
-See build-dpf-lcd4linux.sh for the single steps. Right, this could also
-be in a makefile to be more fool proof..
-
-----------------------------------------------------------------------------
-Features
-
-For features of this firmware, see Changelog
-
-----------------------------------------------------------------------------
-Find updates, documentation and some help here:
-
-http://sourceforge.net/projects/dpf-ax/
-or
-http://picframe.spritesserver.nl/wiki/index.php/DPF_with_AppoTech_AX206
-(might be outdated)
-or
-http://ax206howtos.wikia.com/wiki/Main_Page
-or
-http://forum.doozan.com/list.php?9
-
-For our german users, explanations can be found here:
-
-http://geekparadise.de/2011/04/digitaler-bilderrahmen-von-pearl-als-statusdisplay-fur-dockstar/
-(rather outdated)
-or
-http://www.vdr-portal.de/board18-vdr-hardware/board11-displays/109196-howto-pearl-dpf-easy-hacking/
-
-
-(c) 3/2012, hackfin
-    5/2013, superelchi
